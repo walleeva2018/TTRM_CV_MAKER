@@ -4,16 +4,9 @@ const localePath = useLocalePath()
 
 <template>
   <h1>
-    <NuxtLink
-      :to="localePath('/')"
-      class="bg-none font-bold text-fl-lg font-logo uppercase tracking-widest"
-      active-class="bg-none"
-    >
-      <span
-        class="text-transparent bg-gradient-to-br from-violet-800 to-fuchsia-700 bg-clip-text hover:opacity-80"
-      >
-        CvFy
-      </span>
+    <NuxtLink :to="localePath('/')" class="bg-none font-bold text-fl-lg font-logo uppercase tracking-widest"
+      active-class="bg-none">
+      <img height="200" width="100" src="../../assets/werhere_nl_logo.jpeg" />
     </NuxtLink>
   </h1>
 </template>

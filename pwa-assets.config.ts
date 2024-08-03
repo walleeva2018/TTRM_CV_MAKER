@@ -21,5 +21,5 @@ export default defineConfig({
       },
     }, ['iPad Air 9.7"']),
   },
-  images: 'public/logo.svg',
+  images: 'public/logo-1.jpeg',
 })

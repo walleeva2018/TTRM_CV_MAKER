@@ -22,14 +22,9 @@ const config = {
     { name: 'black', color: '#1F2937', darker: '#111827' },
   ],
   languages: [
-    { name: 'es-name', code: 'es' },
     { name: 'en-name', code: 'en' },
-    { name: 'id-name', code: 'id' },
-    { name: 'fr-name', code: 'fr' },
-    { name: 'zh-name', code: 'zh' },
-    { name: 'de-name', code: 'de' },
-    { name: 'ar-name', code: 'ar' },
-    { name: 'pt-name', code: 'pt' },
+    { name: 'tr-name', code: 'tr' },
+    { name: 'nl-name', code: 'nl' }
   ],
 }
 
@@ -76,44 +71,19 @@ function getCurrentColor(colorValue: string): {
   <div class="settings">
     <div class="flex justify-between items-center title pt-2 px-6">
       <LandingLogo />
-      <a
-        class="buy-me-a-coffee"
-        href="https://ko-fi.com/X8X4COWK0"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Buy me a coffee"
-      >
-        <img
-          class="buy-me-a-coffee__image"
-          src="https://cdn.ko-fi.com/cdn/kofi5.png?v=3"
-          width="118px"
-          height="30px"
-          alt="Buy me a coffee button"
-        >
-      </a>
+
     </div>
     <h2 class="flex flex-wrap text-xl/normal pt-10 px-6 tracking-wide uppercase">
       <span class="title__text">
         {{ $t("cv-settings") }}
       </span>
     </h2>
-    <form
-      class="form mb-10"
-      autocomplete="on"
-    >
+    <form class="form mb-10" autocomplete="on">
       <div class="form__section px-6 py-3">
-        <button
-          class="form__btn form__btn--ghost"
-          type="button"
-          @click="resetForm"
-        >
+        <button class="form__btn form__btn--ghost" type="button" @click="resetForm">
           {{ $t("reset-settings") }}
         </button>
-        <button
-          class="form__btn form__btn--ghost"
-          type="button"
-          @click="clearForm"
-        >
+        <button class="form__btn form__btn--ghost" type="button" @click="clearForm">
           {{ $t("clear-settings") }}
         </button>
       </div>
@@ -124,13 +94,8 @@ function getCurrentColor(colorValue: string): {
           {{ $t("cv-language") }}
         </legend>
         <div class="flex flex-wrap gap-2 justify-start w-full">
-          <nuxt-link
-            v-for="locale in availableLocales"
-            :key="locale"
-            class="form__btn form__btn--ghost"
-            :to="switchLocalePath(locale)"
-            :exact="true"
-          >
+          <nuxt-link v-for="locale in availableLocales" :key="locale" class="form__btn form__btn--ghost"
+            :to="switchLocalePath(locale)" :exact="true">
             {{ $t(`${locale}-name`) }}
           </nuxt-link>
         </div>
@@ -143,25 +108,15 @@ function getCurrentColor(colorValue: string): {
           {{ $t("layout-theme") }}
         </legend>
         <div class="flex flex-wrap gap-2 justify-start">
-          <label
-            v-for="layout in config.layouts"
-            :key="layout"
-            tabindex="0"
-            class="form__btn form__btn--ghost capitalize"
-            :class="[
-              {
-                'form__btn--active':
-                  layout === formSettings.layout,
-              },
-            ]"
-          >
+          <label v-for="layout in config.layouts" :key="layout" tabindex="0"
+            class="form__btn form__btn--ghost capitalize" :class="[
+          {
+            'form__btn--active':
+              layout === formSettings.layout,
+          },
+        ]">
             {{ $t(layout) }}
-            <input
-              v-model="formSettings.layout"
-              :value="layout"
-              type="radio"
-              class="sr-only"
-            >
+            <input v-model="formSettings.layout" :value="layout" type="radio" class="sr-only">
           </label>
         </div>
       </fieldset>
@@ -173,28 +128,17 @@ function getCurrentColor(colorValue: string): {
           {{ $t("color-theme") }}
         </legend>
         <div class="flex flex-wrap gap-2 justify-start">
-          <label
-            v-for="color in config.colors"
-            :key="color.color"
-            tabindex="0"
-            class="form__btn form__btn--color-theme capitalize"
-            :class="[
-              `form__btn--${color.name}`,
-              {
-                'form__btn--color-selected':
-                  color.color === formSettings.activeColor,
-              },
-            ]"
-            @keydown.enter="changeColor(color.color, color.darker)"
-          >
+          <label v-for="color in config.colors" :key="color.color" tabindex="0"
+            class="form__btn form__btn--color-theme capitalize" :class="[
+          `form__btn--${color.name}`,
+          {
+            'form__btn--color-selected':
+              color.color === formSettings.activeColor,
+          },
+        ]" @keydown.enter="changeColor(color.color, color.darker)">
             {{ $t(color.name) }}
-            <input
-              v-model="formSettings.activeColor"
-              type="radio"
-              class="sr-only"
-              :value="color.color"
-              @change="changeColor(color.color, color.darker)"
-            >
+            <input v-model="formSettings.activeColor" type="radio" class="sr-only" :value="color.color"
+              @change="changeColor(color.color, color.darker)">
           </label>
         </div>
       </fieldset>
@@ -212,95 +156,36 @@ function getCurrentColor(colorValue: string): {
             <div class="grid grid-cols-2 gap-x-3 gap-y-10">
               <div class="form__group col-span-full">
                 <span class="form__label">📷 {{ $t("profile-image") }} </span>
-                <CvProfileImageUploader
-                  v-model="formSettings.profileImageDataUri"
-                />
+                <CvProfileImageUploader v-model="formSettings.profileImageDataUri" />
               </div>
               <div class="form__group col-span-full">
-                <label
-                  class="form__label"
-                  for="job-pos"
-                >💼 {{ $t("job-title") }}</label>
-                <input
-                  id="job-pos"
-                  v-model="formSettings.jobTitle"
-                  class="form__control"
-                  type="text"
-                >
+                <label class="form__label" for="job-pos">💼 {{ $t("job-title") }}</label>
+                <input id="job-pos" v-model="formSettings.jobTitle" class="form__control" type="text">
               </div>
               <div class="form__group">
-                <label
-                  class="form__label"
-                  for="first-name"
-                >👤 {{ $t("first-name") }}</label>
-                <input
-                  id="first-name"
-                  v-model="formSettings.name"
-                  class="form__control"
-                  type="text"
-                >
+                <label class="form__label" for="first-name">👤 {{ $t("first-name") }}</label>
+                <input id="first-name" v-model="formSettings.name" class="form__control" type="text">
               </div>
               <div class="form__group">
-                <label
-                  class="form__label"
-                  for="last-name"
-                >👤 {{ $t("last-name") }}</label>
-                <input
-                  id="last-name"
-                  v-model="formSettings.lastName"
-                  class="form__control"
-                  type="text"
-                >
+                <label class="form__label" for="last-name">👤 {{ $t("last-name") }}</label>
+                <input id="last-name" v-model="formSettings.lastName" class="form__control" type="text">
               </div>
               <div class="form__group col-span-full">
-                <label
-                  class="form__label"
-                  for="email"
-                >✉️ {{ $t("email") }}</label>
-                <input
-                  id="email"
-                  v-model="formSettings.email"
-                  class="form__control"
-                  type="email"
-                >
+                <label class="form__label" for="email">✉️ {{ $t("email") }}</label>
+                <input id="email" v-model="formSettings.email" class="form__control" type="email">
               </div>
               <div class="form__group">
-                <label
-                  class="form__label"
-                  for="location"
-                >📍 {{ $t("location") }}</label>
-                <input
-                  id="location"
-                  v-model="formSettings.location"
-                  class="form__control"
-                  type="text"
-                >
+                <label class="form__label" for="location">📍 {{ $t("location") }}</label>
+                <input id="location" v-model="formSettings.location" class="form__control" type="text">
               </div>
               <div class="form__group">
-                <label
-                  class="form__label"
-                  for="phone"
-                >📱 {{ $t("phone-number") }}</label>
-                <input
-                  id="phone"
-                  v-model="formSettings.phoneNumber"
-                  class="form__control"
-                  type="tel"
-                >
+                <label class="form__label" for="phone">📱 {{ $t("phone-number") }}</label>
+                <input id="phone" v-model="formSettings.phoneNumber" class="form__control" type="tel">
               </div>
               <div class="form__group col-span-full">
-                <label
-                  class="form__label"
-                  for="aboutme"
-                >🌟 {{ $t("about-me") }}</label>
-                <textarea
-                  id="aboutme"
-                  v-model="formSettings.aboutme"
-                  class="form__control"
-                  name="aboutme"
-                  cols="30"
-                  rows="10"
-                />
+                <label class="form__label" for="aboutme">🌟 {{ $t("about-me") }}</label>
+                <textarea id="aboutme" v-model="formSettings.aboutme" class="form__control" name="aboutme" cols="30"
+                  rows="10" />
               </div>
             </div>
           </template>
@@ -318,30 +203,23 @@ function getCurrentColor(colorValue: string): {
           </template>
           <template #content>
             <div>
-              <CvInputTags
-                v-model="formSettings.jobSkills"
-                tag-list-name="jobSkills"
-                :tag-list-label="`🛠 ${$t('technical-skills')}`"
-                :display="Boolean(formSettings.displayJobSkills)"
-              />
-              <CvInputTags
-                v-model="formSettings.softSkills"
-                tag-list-name="softSkills"
-                :tag-list-label="`🧸 ${$t('soft-skills')}`"
-                :display="Boolean(formSettings.displaySoftSkills)"
-              />
-              <CvInputTags
-                v-model="formSettings.languages"
-                tag-list-name="languages"
-                :tag-list-label="`🌎 ${$t('languages')}`"
-                :display="Boolean(formSettings.displayLanguages)"
-              />
-              <CvInputTags
-                v-model="formSettings.interests"
-                tag-list-name="interests"
-                :tag-list-label="`🧸 ${$t('interests')}`"
-                :display="Boolean(formSettings.displayInterests)"
-              />
+              <div class="video-container">
+                <h2 class="video-heading">Necessary Skills</h2>
+                <div class="iframe-container">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/yph1Dp46dV4?si=QykdB87lCI2uHtZv"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+              </div>
+              <CvInputTags v-model="formSettings.jobSkills" tag-list-name="jobSkills"
+                :tag-list-label="`🛠 ${$t('technical-skills')}`" :display="Boolean(formSettings.displayJobSkills)" />
+              <CvInputTags v-model="formSettings.softSkills" tag-list-name="softSkills"
+                :tag-list-label="`🧸 ${$t('soft-skills')}`" :display="Boolean(formSettings.displaySoftSkills)" />
+              <CvInputTags v-model="formSettings.languages" tag-list-name="languages"
+                :tag-list-label="`🌎 ${$t('languages')}`" :display="Boolean(formSettings.displayLanguages)" />
+              <CvInputTags v-model="formSettings.interests" tag-list-name="interests"
+                :tag-list-label="`🧸 ${$t('interests')}`" :display="Boolean(formSettings.displayInterests)" />
             </div>
           </template>
         </expansion-panel>
@@ -358,79 +236,53 @@ function getCurrentColor(colorValue: string): {
           </template>
           <template #content>
             <div>
-              <CvDisplayCheckbox
-                class="form__display-checkbox mb-10"
-                :display-section="formSettings.displaySocial"
-                section-name="social"
-              />
+              <div class="video-container">
+                <h2 class="video-heading">Why Social Media are important</h2>
+                <div class="iframe-container">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/BBkhmog1ngw?si=9lO4LpXtSAVLq7NV"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+              </div>
+              <CvDisplayCheckbox class="form__display-checkbox mb-10" :display-section="formSettings.displaySocial"
+                section-name="social" />
               <div class="grid grid-cols-2 gap-x-3 gap-y-10">
                 <div class="form__group col-span-full">
-                  <label
-                    class="form__label flex"
-                    for="linkedin"
-                  >
+                  <label class="form__label flex" for="linkedin">
                     <svg class="form__icon rounded mr-1">
                       <use href="@/assets/sprite.svg#linkedin" />
                     </svg>
                     Linkedin
                   </label>
-                  <input
-                    id="linkedin"
-                    v-model="formSettings.linkedin"
-                    class="form__control"
-                    type="text"
-                  >
+                  <input id="linkedin" v-model="formSettings.linkedin" class="form__control" type="text">
                 </div>
                 <div class="form__group col-span-full">
-                  <label
-                    class="form__label flex"
-                    for="twitter"
-                  >
+                  <label class="form__label flex" for="twitter">
                     <svg class="form__icon rounded mr-1">
                       <use href="@/assets/sprite.svg#twitter" />
                     </svg>
                     Twitter
                   </label>
-                  <input
-                    id="twitter"
-                    v-model="formSettings.twitter"
-                    class="form__control"
-                    type="text"
-                  >
+                  <input id="twitter" v-model="formSettings.twitter" class="form__control" type="text">
                 </div>
                 <div class="form__group col-span-full">
-                  <label
-                    class="form__label flex"
-                    for="github"
-                  >
+                  <label class="form__label flex" for="github">
                     <svg class="form__icon mr-1">
                       <use href="@/assets/sprite.svg#github" />
                     </svg>
                     GitHub
                   </label>
-                  <input
-                    id="github"
-                    v-model="formSettings.github"
-                    class="form__control"
-                    type="text"
-                  >
+                  <input id="github" v-model="formSettings.github" class="form__control" type="text">
                 </div>
                 <div class="form__group col-span-full">
-                  <label
-                    class="form__label flex"
-                    for="website"
-                  >
+                  <label class="form__label flex" for="website">
                     <svg class="form__icon mr-1">
                       <use href="@/assets/sprite.svg#website" />
                     </svg>
                     Website
                   </label>
-                  <input
-                    id="website"
-                    v-model="formSettings.website"
-                    class="form__control"
-                    type="text"
-                  >
+                  <input id="website" v-model="formSettings.website" class="form__control" type="text">
                 </div>
               </div>
             </div>
@@ -440,46 +292,20 @@ function getCurrentColor(colorValue: string): {
       <!-- SOCIAL -->
 
       <!-- HISTORY SECTIONS -->
-      <CvSettingsHistorySection
-        v-for="(value, key) in SectionNameList"
-        :key="key"
-        :section="key"
-        :name="value"
-      />
+      <CvSettingsHistorySection v-for="(value, key) in SectionNameList" :key="key" :section="key" :name="value" />
       <!-- HISTORY SECTIONS -->
 
       <!-- CTA -->
       <div class="form__section flex flex-col p-6 gap-3">
-        <button
-          type="button"
-          class="form__btn flex flex-col justify-center"
-          @click="downloadPdf"
-        >
+        <button type="button" class="form__btn flex flex-col justify-center" @click="downloadPdf">
           <span>{{ $t("download-cv-pdf") }}</span>
         </button>
-        <label
-          tabindex="0"
-          class="form__btn flex justify-center"
-        >
-          {{ $t("upload-cv") }} (JSON)
-          <input
-            type="file"
-            accept=".json"
-            name="uploadCV"
-            class="hidden"
-            @change="uploadCV"
-          >
-        </label>
-        <a
-          :href="formSettingsHref"
-          rel="noopener"
-          :download="`CV_${formSettings.name}_${formSettings.lastName}_${$i18n.locale}.json`"
-          class="form__btn flex justify-center"
-        >{{ $t("download-cv-settings") }}
-          (JSON)</a>
+
+
       </div>
       <!-- CTA -->
     </form>
+
   </div>
 </template>
 
@@ -508,5 +334,39 @@ function getCurrentColor(colorValue: string): {
     height: 30px;
     font-size: 0.5rem;
   }
+}
+
+.video-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  margin: 0 auto 20px auto;
+  flex: 1;
+}
+
+.video-heading {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 </style>

@@ -69,40 +69,16 @@ export default defineNuxtConfig({
         name: 'English',
       },
       {
-        code: 'es',
-        file: 'es.json',
-        name: 'Español',
+        code: 'nl',
+        file: 'nl.json',
+        name: 'Dutch'
       },
       {
-        code: 'id',
-        file: 'id.json',
-        name: 'Indonesian',
-      },
-      {
-        code: 'de',
-        file: 'de.json',
-        name: 'German',
-      },
-      {
-        code: 'fr',
-        file: 'fr.json',
-        name: 'Francais',
-      },
-      {
-        code: 'ar',
-        file: 'ar.json',
-        name: 'Arabic',
-      },
-      {
-        code: 'zh',
-        file: 'zh.json',
-        name: 'Chinese',
-      },
-      {
-        code: 'pt',
-        file: 'pt.json',
-        name: 'Portuguese',
-      },
+        code: 'tr',
+        file: 'tr.json',
+        name: 'Turkish'
+      }
+
     ],
     lazy: false,
     langDir: 'lang/',

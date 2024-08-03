@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useCvState } from '~/data/useCvState'
 
-const CVFY_IMAGE = 'https://cvfy.xyz/CvFy-no-border.png'
+const CVFY_IMAGE = 'https://werhere.nl/wp-content/uploads/2021/08/logo.png'
 
 const { setUpCvSettings } = useCvState()
 const route = useRoute()
@@ -22,7 +22,7 @@ useHead({
     {
       rel: 'preload',
       as: 'image',
-      href: 'https://cdn.ko-fi.com/cdn/kofi5.png?v=3',
+      href: 'https://werhere.nl/wp-content/uploads/2021/08/logo.png',
     },
     {
       rel: 'canonical',
@@ -38,7 +38,7 @@ useHead({
     {
       hid: 'author',
       name: 'author',
-      content: 'claudiabdm',
+      content: 'walleeva2018',
     },
     {
       hid: 'og:image',
@@ -60,41 +60,6 @@ useHead({
       property: 'og:description',
       content: t('description'),
     },
-    {
-      hid: 'twitter:creator',
-      name: 'twitter:creator',
-      content: '@claudiabdm',
-    },
-    {
-      hid: 'twitter:title',
-      name: 'twitter:title',
-      content: t('title-tag'),
-    },
-    {
-      hid: 'twitter:url',
-      name: 'twitter:url',
-      content: href,
-    },
-    {
-      hid: 'twitter:description',
-      name: 'twitter:description',
-      content: t('description'),
-    },
-    {
-      hid: 'twitter:card',
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    },
-    {
-      hid: 'twitter:image',
-      name: 'twitter:image',
-      content: CVFY_IMAGE,
-    },
-    {
-      hid: 'twitter:image:alt',
-      name: 'twitter:image:alt',
-      content: t('description'),
-    },
   ],
 })
 </script>
@@ -103,7 +68,9 @@ useHead({
   <main class="font-app main">
     <CvSettings class="basis-1/4 min-w-80" />
     <CvPreview class="basis-3/4" />
+
   </main>
+  <LandingFooterView />
 </template>
 
 <style lang="postcss">
