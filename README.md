@@ -1,30 +1,12 @@
-# CvFy
+# WE'RHERE
 
-[![MadeWithVueJs.com shield](https://madewithvuejs.com/storage/repo-shields/3280-shield.svg)](https://madewithvuejs.com/p/cvfy/shield-link)
+With We'RHere you can create, preview and save your CV as PDF easily and for free! Available in English and Spanish. Built with Nuxt.
 
-![CvFy](/public/CvFy.png)
 
-CvFy is an open-sourced multilingual app that makes CV creation faster and easier.
 
-> [!NOTE]
-> PDF creation is client-side only, so results may differ among browsers.
+## Step to install locally 
 
-Demo: https://cvfy.xyz/
-
-## Features
-- Multilingual
-- Custom themes (layout and color)
-- No login required
-- Responsive design
-- Accessible
-- SEO
-- PWA
-- Offline
-
-## Tech Stack
-- HTML
-- TypeScript
-- PostCSS
-- TailwindCSS
-- Nuxt 3
-- Cloudflare Pages
+1. `git clone git@github.com:walleeva2018/TTRM_CV_MAKER.git`
+2. `cd TTRM_CV_MAKER`
+3. `npm i`
+4. `npm run dev`
